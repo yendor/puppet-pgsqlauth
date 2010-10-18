@@ -5,7 +5,7 @@ Puppet::Type.type(:pgsqlauth).provide(:parsed, :parent => Puppet::Provider::Pars
 
     desc "The pg_hba.conf authorisation file"
 
-    text_line :comment, :match => %r{^#}, :post_parse => proc { |hash|
+    text_line :comment, :match => %r{^\s*#}, :post_parse => proc { |hash|
         if hash[:line] =~ /Puppet Name: (.+)\s*$/
             hash[:name] = $1
         end
@@ -49,7 +49,6 @@ Puppet::Type.type(:pgsqlauth).provide(:parsed, :parent => Puppet::Provider::Pars
           when :comment
             if record[:name]
               name = record[:name]
-              record[:skip] = true
             end
           when :blank
             # skip it
