@@ -17,18 +17,18 @@ Puppet::Type.type(:pgsqlauth).provide(:parsed, :parent => Puppet::Provider::Pars
         :fields => %w{type database user cidr method},
         :optional => %w{},
         :separator => ":" do |line|
-          hash = {}
-          empty = {}
+            hash = {}
+            empty = {}
 
-          parts = line.split('\s+')
-          hash[:type] = parts[0] if parts[0]
-          hash[:database] = parts[1] if parts[1]
-          hash[:user] = parts[2] if parts[2]
-          hash[:cidr] = parts[3] if parts[3]
-          hash[:method] = parts[4] if parts[4]
+            parts = line.split('\s+')
+            hash[:type] = parts[0] if parts[0]
+            hash[:database] = parts[1] if parts[1]
+            hash[:user] = parts[2] if parts[2]
+            hash[:cidr] = parts[3] if parts[3]
+            hash[:method] = parts[4] if parts[4]
 
-          return hash
-        end
+            return hash
+    end
 
     def self.to_line(hash)
       return nil unless hash[:type]
@@ -40,8 +40,6 @@ Puppet::Type.type(:pgsqlauth).provide(:parsed, :parent => Puppet::Provider::Pars
       end
 
       str += [hash[:type], hash[:database], hash[:user], hash[:cidr], hash[:method]]
-
-      end
     end
 
     def self.prefetch_hook(records)
