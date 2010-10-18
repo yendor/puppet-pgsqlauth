@@ -20,7 +20,7 @@ Puppet::Type.type(:pgsqlauth).provide(:parsed, :parent => Puppet::Provider::Pars
             hash = {}
             empty = {}
 
-            parts = line.split('\s+')
+            parts = line.split(/\s+/)
             hash[:type] = parts[0] if parts[0]
             hash[:database] = parts[1] if parts[1]
             hash[:user] = parts[2] if parts[2]
