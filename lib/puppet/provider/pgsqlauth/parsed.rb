@@ -39,7 +39,7 @@ Puppet::Type.type(:pgsqlauth).provide(:parsed, :parent => Puppet::Provider::Pars
         str = "# Puppet Name: %s\n" % hash[:name]
       end
 
-      str += [hash[:type], hash[:database], hash[:user], hash[:cidr], hash[:method]]
+      str += [hash[:type], hash[:database], hash[:user], hash[:cidr], hash[:method]].join(" ").sub(/\s+$/, "")
     end
 
     def self.prefetch_hook(records)
